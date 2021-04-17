@@ -5,21 +5,18 @@ import Tournaments from "../Data/Tournaments.js";
 import axios from "axios";
 import "../../App.css";
 
-
-
-
 export function CsgoNav() {
-
   const [dataLoaded, setdataLoaded] = useState(false);
 
   const getData = () => {
-    const url = "http://localhost:5000/csgo/tournaments";
+    const url =
+      "https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
 
-    axios.get(url).then((response) => {settournamentData(response.data)
-    setdataLoaded(true);});
-    
+    axios.get(url).then((response) => {
+      settournamentData(response.data);
+      setdataLoaded(true);
+    });
   };
-
 
   const [mounted, setMounted] = useState(false);
 
@@ -39,38 +36,36 @@ export function CsgoNav() {
 
   const [tournamentData, settournamentData] = useState([{}]);
 
-  if(dataLoaded===false) {
-    return (<h1>LOADING</h1>)
+  if (dataLoaded === false) {
+    return <h1>LOADING</h1>;
+  } else if (dataLoaded === true) {
+    return (
+      <>
+        <div className="csgo-card-list">
+          <h1 onClick={() => toggleTab(1)}>Stat tracker</h1>
+          <h1
+            onClick={(e) => {
+              toggleTab(2);
+            }}
+          >
+            Tournaments
+          </h1>
+          <h1
+            onClick={(e) => {
+              toggleTab(3);
+            }}
+          >
+            Teams
+          </h1>
+        </div>
+        <SteamIdForm
+          className={toggleState === 1 ? "active-tab" : "tab"}
+        ></SteamIdForm>
+        <Tournaments
+          className={toggleState === 2 ? "active-tab" : "tab"}
+          data={tournamentData}
+        ></Tournaments>
+      </>
+    );
   }
-
-
-  else if (dataLoaded===true) {
-  return (
-    <>
-      <div className="csgo-card-list">
-        <h1 onClick={() => toggleTab(1)}>Stat tracker</h1>
-        <h1
-          onClick={(e) => {
-            toggleTab(2);
-          }}
-        >
-          Tournaments
-        </h1>
-        <h1
-          onClick={(e) => {
-            toggleTab(3);
-          }}
-        >
-          Teams
-        </h1>
-      </div>
-      <SteamIdForm
-        className={toggleState === 1 ? "active-tab" : "tab"}
-      ></SteamIdForm>
-      <Tournaments
-        className={toggleState === 2 ? "active-tab" : "tab"}
-        data={tournamentData}
-      ></Tournaments>
-    </>
-  );
-}}
+}

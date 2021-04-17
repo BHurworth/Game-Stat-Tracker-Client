@@ -18,8 +18,8 @@ function SteamIdForm(props) {
   ]);
 
   const getDatas = (e, id) => {
-    let csgoUrl = `http://localhost:5000/csgo/${id}`;
-    let steamUrl = `http://localhost:5000/steam/${id}`;
+    let csgoUrl = `https://game-stat-tracker-server.herokuapp.com/csgo/${id}`;
+    let steamUrl = `https://game-stat-tracker-server.herokuapp.com/steam/${id}`;
 
     const requestCsgo = axios.get(csgoUrl);
     const requestSteam = axios.get(steamUrl);

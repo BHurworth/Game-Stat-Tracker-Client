@@ -11,7 +11,9 @@ export function CsgoNav() {
 
   const getData = () => {
     const url =
-      "http://localhost:5000/csgo/tournaments";
+      "https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
+
+      // "http://localhost:5000/csgo/tournaments";
 
       //"https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
 
@@ -42,7 +44,7 @@ export function CsgoNav() {
   const [tournamentData, settournamentData] = useState([{}]);
 
   if (dataLoaded === false) {
-    return <Spinner></Spinner>
+    return <Spinner size="large"></Spinner>
   } else if (dataLoaded === true) {
     return (
       <>

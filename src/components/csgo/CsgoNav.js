@@ -3,6 +3,7 @@ import Card from "../Navigation/Card.js";
 import SteamIdForm from "../Data/SteamIdForm.js";
 import Tournaments from "../Data/Tournaments.js";
 import axios from "axios";
+import Spinner from "../Misc/Spinner.js"
 import "../../App.css";
 
 export function CsgoNav() {
@@ -10,7 +11,9 @@ export function CsgoNav() {
 
   const getData = () => {
     const url =
-      "https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
+      "http://localhost:5000/csgo/tournaments";
+
+      //"https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
 
     axios.get(url).then((response) => {
       settournamentData(response.data);
@@ -21,7 +24,9 @@ export function CsgoNav() {
   const [mounted, setMounted] = useState(false);
 
   if (!mounted) {
+    // setTimeout(() => getData(), 1000);
     getData();
+
   }
 
   useEffect(() => {
@@ -37,7 +42,7 @@ export function CsgoNav() {
   const [tournamentData, settournamentData] = useState([{}]);
 
   if (dataLoaded === false) {
-    return <h1>LOADING</h1>;
+    return <Spinner></Spinner>
   } else if (dataLoaded === true) {
     return (
       <>
@@ -60,6 +65,7 @@ export function CsgoNav() {
         </div>
         <SteamIdForm
           className={toggleState === 1 ? "active-tab" : "tab"}
+          id = "trigger"
         ></SteamIdForm>
         <Tournaments
           className={toggleState === 2 ? "active-tab" : "tab"}

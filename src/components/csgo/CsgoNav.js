@@ -4,7 +4,7 @@ import SteamIdForm from "../Data/SteamIdForm.js";
 import Tournaments from "../Data/Tournaments.js";
 import axios from "axios";
 import Spinner from "../Misc/Spinner.js";
-import {CsgoNews} from "../Data/CsgoNews.js"
+import { CsgoNews } from "../Data/CsgoNews.js";
 import "../../App.css";
 
 export function CsgoNav() {
@@ -17,7 +17,8 @@ export function CsgoNav() {
     // "http://localhost:5000/csgo/tournaments";
     //"https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
 
-    const csgoNewsUrl = "http://localhost:5000/csgo/news";
+    const csgoNewsUrl =
+      "https://game-stat-tracker-server.herokuapp.com/csgo/news";
 
     // "http://localhost:5000/csgo/news";
     //"https://game-stat-tracker-server.herokuapp.com/csgo/news";
@@ -25,16 +26,16 @@ export function CsgoNav() {
     const requestTourn = axios.get(csgoTournUrl);
     const requestNews = axios.get(csgoNewsUrl);
 
-    axios
-      .all([requestTourn,requestNews])
-      .then(axios.spread((...responses) => {
+    axios.all([requestTourn, requestNews]).then(
+      axios.spread((...responses) => {
         const tournamentResponse = responses[0];
         const newsResponse = responses[1];
         settournamentData(tournamentResponse.data);
         setnewsData(newsResponse.data.appnews.newsitems);
         console.log(newsResponse.data.appnews.newsitems);
         setdataLoaded(true);
-      }));
+      })
+    );
   };
 
   const [mounted, setMounted] = useState(false);
@@ -55,7 +56,7 @@ export function CsgoNav() {
   };
 
   const [tournamentData, settournamentData] = useState([{}]);
-    const [newsData, setnewsData] = useState([{}]);
+  const [newsData, setnewsData] = useState([{}]);
 
   if (dataLoaded === false) {
     return <Spinner size="large"></Spinner>;

@@ -23,12 +23,12 @@ function SteamIdForm(props) {
   const getDatas = (e, id) => {
     setfindingStats(false);
     setstatLoader(true);
-    let csgoUrl = `http://localhost:5000/csgo/${id}`;
+    let csgoUrl = `https://game-stat-tracker-server.herokuapp.com/csgo/${id}`;
 
     // `http://localhost:5000/csgo/${id}`;
     // `https://game-stat-tracker-server.herokuapp.com/csgo/${id}`;
 
-    let steamUrl = `http://localhost:5000/steam/${id}`;
+    let steamUrl = `https://game-stat-tracker-server.herokuapp.com/steam/${id}`;
 
     //   http://localhost:5000/steam/${id};
     // `https://game-stat-tracker-server.herokuapp.com/steam/${id}`;

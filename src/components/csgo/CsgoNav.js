@@ -11,7 +11,8 @@ export function CsgoNav() {
   const [dataLoaded, setdataLoaded] = useState(false);
 
   const getData = () => {
-    const csgoTournUrl = "http://localhost:5000/csgo/tournaments";
+    const csgoTournUrl =
+      "https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
 
     // "http://localhost:5000/csgo/tournaments";
     //"https://game-stat-tracker-server.herokuapp.com/csgo/tournaments";
